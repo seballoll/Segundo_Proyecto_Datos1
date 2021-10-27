@@ -2,21 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Liquor Store</title>
+    <title>Calculadora</title>
 </head>
 <body>
 <center>
     <h1>
-        Select the type of Liquor
+        inserte operacion
     </h1>
     <form method="post" action="SelectLiquor">
         <br>
-        <select name="Type" size="1">
-            <option>WINE</option>
-            <option>WHISKY</option>
-            <option>BEER</option>
+        <textarea id="calc_input" name="input" rows="2" cols="50">
+operacion a resolver
+</textarea>
+        <button type="button">*</button>
+        <button type="button">/</button>
+        <button type="button">+</button>
+        <button type="button">-</button>
+        <button type="button">%</button>
+        <button type="button">(</button>
+        <button type="button">)</button>
 
-        </select>
         <br><br>
         <input type="submit">
     </form>
