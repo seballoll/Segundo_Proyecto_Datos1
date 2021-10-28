@@ -12,20 +12,20 @@ import java.util.List;
 
 
 @WebServlet(
-        name = "selectliquorservlet",
-        urlPatterns = "/SelectLiquor"
+        name = "calculatorservlet",
+        urlPatterns = "/calculator"
 )
-public class CalculatorServlet extends HttpServlet {
+public class CalculatorServLet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String liquorType = req.getParameter("Type");
 
-        LiquorService liquorService = new LiquorService();
-        LiquorType l = LiquorType.valueOf(liquorType);
+        MathLogic liquorService = new MathLogic();
+        numcalc l = numcalc.valueOf(liquorType);
 
-        List liquorBrands = liquorService.getAvailableBrands(l);
+        List liquorBrands = liquorService.identify(l);
 
         req.setAttribute("brands", liquorBrands);
         RequestDispatcher view = req.getRequestDispatcher("result.jsp");

@@ -5,21 +5,15 @@
     <title>Calculadora</title>
 </head>
 <body>
-
+<center>
     <h1>
         inserte operacion
     </h1>
-
-    <form method="post" action="">
+    <form method="post" action="SelectLiquor">
         <br>
-        <label>
-            <select name="Type" size="1">
-                <option>WINE</option>
-                <option>WHISKY</option>
-                <option>BEER</option>
-
-            </select>
-        </label>
+        <textarea id="calc_input" name="input" rows="2" cols="50">
+operacion a resolver
+</textarea>
         <button type="button">*</button>
         <button type="button">/</button>
         <button type="button">+</button>
@@ -29,11 +23,9 @@
         <button type="button">)</button>
 
         <br><br>
-        <label>
-            <input type="submit">
-        </label>
+        <input type="submit">
     </form>
-
+</center>
 
 
 </body>

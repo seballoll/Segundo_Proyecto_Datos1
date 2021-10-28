@@ -1,7 +1,6 @@
 package com.sample;
 
 import com.sample.model.numcalc;
-import com.sample.nodo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +23,17 @@ public class MathLogic {
 
         }else if(type.equals(numcalc.suma)){
             brands.add("No Brand Available");
+        }else if(type.equals(numcalc.WINE)){
+            brands.add("Adrianna Vineyard");
+            brands.add(("J. P. Chenet"));
+
+        }else if(type.equals(numcalc.WHISKY)){
+            brands.add("Glenfiddich");
+            brands.add("Johnnie Walker");
+
+        }else if(type.equals(numcalc.BEER)){
+            brands.add("Corona");
+
         }
         return brands;
     }

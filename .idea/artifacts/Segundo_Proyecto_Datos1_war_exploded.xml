@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Segundo_Proyecto_Datos1:war exploded">
+    <output-path>$USER_HOME$/BrawlhallaReplays/artifacts/Segundo_Proyecto_Datos1_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Segundo_Proyecto_Datos1/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Segundo_Proyecto_Datos1" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
