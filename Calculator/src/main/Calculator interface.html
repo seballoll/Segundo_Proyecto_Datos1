@@ -6,22 +6,14 @@
 </head>
 <body>
 
-    <h1>
-        inserte operacion
-    </h1>
+    <h1 id="titulo"> INSERTE OPERACIÓN </h1>
 
     <form method="post" action="">
         <br>
-        <label>
-            <select name="Type" size="1">
-                <option>WINE</option>
-                <option>WHISKY</option>
-                <option>BEER</option>
+        <input value="" id="nombredelacaja" type="text" name="nombredelacaja"/>
 
-            </select>
-        </label>
-        <button type="button">*</button>
-        <button type="button">/</button>
+        <button onclick ="multiplicar()" id="multi" type="button">*</button>
+        <button onclick = "dividir()" id="entre" type="button">/</button>
         <button type="button">+</button>
         <button type="button">-</button>
         <button type="button">%</button>
@@ -33,8 +25,6 @@
             <input type="submit">
         </label>
     </form>
-
-
-
+<script src="./jscripttt.js"></script>
 </body>
 </html>
