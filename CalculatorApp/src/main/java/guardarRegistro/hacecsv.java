@@ -1,75 +1,58 @@
 package guardarRegistro;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
 import java.io.*;
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import java.util.GregorianCalendar;
 
-public class hscecsv implements Serializable {
+public class hacecsv {
+    public BufferedReader csvreader = null;
+    public BufferedWriter csvwriter = null;
+    public FileWriter filewriter = null;
+    public PrintWriter printWriter = null;
+    public String filepath = "src/main/java/guardarRegistro/registro";
 
-    static String infix;
-
-    static String postfix;
-
-    static String resultado;
-
-    public List<String[]> csvArraylist;
-
-    java.util.Date fecha = new Date();
-
-    public List<String[]> getCsvArraylist() {
-        return csvArraylist;
-    }
-
-
-    public String getResultado() {
-        return resultado;
-    }
-
-    public String getInfix() {
-        return infix;
-    }
-
-    public void setInfix(String infix) {
-        hacecsv.infix = infix;
-    }
-
-    public void calcular() {
-        postfix = InfixToPostfix.toPostfix(infix);
-        ExpressionTree et = new ExpressionTree();
-        char[] charArray = postfix.toCharArray();
-        Node root = et.constructTree(charArray);
-        System.out.println("infix expression is");
-        et.inorder(root);
-        resultado = Integer.toString(et.evalTree(root));
-        writeDataAtEnd("C:\\Users\\Gollo\\OneDrive\\Documentos\\GitHub\\Segundo_Proyecto_Datos1\\CalculatorApp\\src\\main\\java\\guardarRegistro\\registrocalc");
-        csvArraylist = CSVtoArray("C:\\Users\\Gollo\\OneDrive\\Documentos\\GitHub\\Segundo_Proyecto_Datos1\\CalculatorApp\\src\\main\\java\\guardarRegistro\\registrocalc");
-    }
-
-    public List<String[]> CSVtoArray(String filePath){
-        try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
-            List<String[]> r = reader.readAll();
-            r.forEach(x -> System.out.println(Arrays.toString(x)));
-            r.remove(0);
-            return r;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public void writeDataAtEnd(String filePath) {
+    public String readFiles(int identificator) {
+        String record = "";
+        String row;
+        String ident = String.valueOf(identificator);
+        boolean conter = false;
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter(filePath, true));
+            csvreader = new BufferedReader(new FileReader(filepath));
+            while ((row = csvreader.readLine()) != null) {
+                if (row.charAt(0) == ident.charAt(0) && conter) {
+                    record += "," + row;
+                } else if (row.charAt(0) == ident.charAt(0) && !conter) {
+                    record += row;
+                    conter = true;
+                }
+            }
+            System.out.println(record);
+            return record;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error en registro";
+        }
+    }
 
-            //Verifying the read data here
-            String[] data = {infix, resultado, fecha.toString()};
-            writer.writeNext(data);
-            writer.close();
-        } catch (IOException e) {
+    public void writeFiles(int identificator, String operation, String result) {
+        Calendar calendar = GregorianCalendar.getInstance();
+        String ident = String.valueOf(identificator);
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        String hour = String.valueOf(calendar.get(Calendar.HOUR_OF_DAY));
+        String minutes = String.valueOf(calendar.get(Calendar.MINUTE));
+        String seconds = String.valueOf(calendar.get(Calendar.SECOND));
+        String time = hour + ":" + minutes + ":" + seconds;
+
+        try {
+            filewriter = new FileWriter(filepath, true);
+            csvwriter = new BufferedWriter(filewriter);
+            printWriter = new PrintWriter(csvwriter);
+
+            printWriter.println(ident + "," + operation + "," + result + "," + date + "," + time);
+            printWriter.flush();
+            printWriter.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
